@@ -3,7 +3,7 @@ from django.db import models
 
 class Shipping(models.Model):
 	product = models.CharField(max_length=2023)
-	direccion = models.CharField(max_length=2023)
+	address = models.CharField(max_length=2023)
 	amount = models.IntegerField()
 	total_price = models.FloatField()
 
