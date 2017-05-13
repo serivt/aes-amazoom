@@ -1,0 +1,53 @@
+version: '3'
+
+networks:
+    microservices:
+
+services:
+    nginx:
+        container_name: nginx
+        image: tutum/nginx
+        volumes:
+            - ./static:/srv/static
+            - ./sites-enabled:/etc/nginx/sites-enabled
+        restart: always
+        networks:
+            - microservices
+        ports:
+            - "8080:8080"
+    webui:
+        container_name: webui
+        image: django-docker
+        volumes:
+            - ./amazoom:/srv/app
+        restart: always
+        networks:
+            - microservices
+        environment:
+            PORT: 8000
+        ports:
+            - "8000:8000"
+    inventario:
+        container_name: inventario
+        image: django-docker
+        volumes:
+            - ./inventario:/srv/app
+        restart: always
+        networks:
+            - microservices
+        environment:
+            PORT: 8001
+        ports:
+            - "8001:8001"
+    envios:
+        container_name: envios
+        image: django-docker
+        volumes:
+            - ./envios:/srv/app
+        restart: always
+        networks:
+            - microservices
+        environment:
+            PORT: 8002
+        ports:
+            - "8002:8002"
