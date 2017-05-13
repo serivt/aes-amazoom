@@ -2,18 +2,18 @@ from django.db import models
 
 
 class Shipping(models.Model):
-	product = models.CharField(max_length=2023)
-	address = models.CharField(max_length=2023)
-	amount = models.IntegerField()
-	total_price = models.FloatField()
+    product = models.CharField(max_length=2023)
+    address = models.CharField(max_length=2023)
+    amount = models.IntegerField()
+    total_price = models.FloatField()
 
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return self.product
 
-	@property
-	def precio(self):
-		return self.total_price / self.amount
+    @property
+    def precio(self):
+        return self.total_price / self.amount
 
-	@precio.setter
-	def precio(self, precio):
-		self.total_price = precio * self.amount
+    @precio.setter
+    def precio(self, precio):
+        self.total_price = precio * self.amount

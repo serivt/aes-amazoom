@@ -51,3 +51,15 @@ services:
             PORT: 8002
         ports:
             - "8002:8002"
+    pagos:
+        container_name: pagos
+        image: django-docker
+        volumes:
+            - ./pagos:/srv/app
+        restart: always
+        networks:
+            - microservices
+        environment:
+            PORT: 8003
+        ports:
+            - "8003:8003"
